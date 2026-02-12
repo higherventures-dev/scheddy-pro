@@ -22,7 +22,7 @@ export default async function Profile() {
   // Provide a base URL for the live preview (falls back if env missing)
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, '') ||
-    'https://scheddy.us'
+    'https://app.scheddy.us'
 
   return (
     <div className="p-6">
