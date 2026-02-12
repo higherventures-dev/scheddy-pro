@@ -103,7 +103,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
 </div>
             <div>
-            <Header>{children}</Header>
+            <Header/>
             </div></div>
           <div className="border border-[#313131] mt-2"></div>
           {children}

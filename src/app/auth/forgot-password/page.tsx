@@ -5,6 +5,7 @@ import { SubmitButton } from '@/components/submit-button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
+import Image from "next/image";
 import { SmtpMessage } from '../smtp-message'
 
 type Props = {
@@ -26,15 +27,15 @@ export default function ForgotPassword({ searchParams }: Props) {
         <form
           action={forgotPasswordAction}
           noValidate
-          className="w-full max-w-md rounded-xl border shadow p-8 space-y-6"
+          className="w-full max-w-md rounded-xl border shadow p-8 space-y-2"
           style={{ backgroundColor: '#1c1c1c' }}
         >
           <header>
-            <h1 className="text-2xl font-medium">Reset your password</h1>
+    
+            <h4 className="text-2xl font-medium pb-1">Forgot your password?</h4>
             <p className="text-sm text-secondary-foreground mt-1">
-              Already have an account?{' '}
-              <Link className="text-primary underline" href="/auth/sign-in">
-                Sign in
+              Fill in your email address below and we will send you an email to reset it or {' '}
+              <Link className="text-primary underline" href="/auth/sign-in">sign in
               </Link>
             </p>
           </header>
@@ -59,11 +60,6 @@ export default function ForgotPassword({ searchParams }: Props) {
           <div className="pt-2">
             <SubmitButton>Send Reset Email</SubmitButton>
           </div>
-
-          <ul className="text-xs text-muted-foreground list-disc pl-5 space-y-1 pt-3">
-            <li>Links expire for security; if it’s expired, you’ll be prompted to resend.</li>
-            <li>Check spam/promotions. We disable click-tracking to prevent broken links.</li>
-          </ul>
         </form>
       </div>
 
