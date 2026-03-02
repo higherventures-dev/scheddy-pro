@@ -19,10 +19,8 @@ export default function Consent({ phoneE164 }: { phoneE164: string }) {
       <label className="flex items-start gap-2">
         <input type="checkbox" checked={checked} onChange={e=>setChecked(e.target.checked)} />
         <span>
-          By checking this box, you agree to receive text messages from <b>Scheddy</b> about appointments and updates.
-          Msg&data rates may apply. Reply STOP to opt out.
-          <br/>
-          <a href="/terms" className="underline">Terms</a> · <a href="/privacy" className="underline">Privacy</a>
+          By checking this box, you agree to receive SMS messages from Scheddy regarding appointments, booking confirmations, reminders, account updates, and related customer care notifications. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not a condition of purchase.
+          <br/>View our <a href="https://www.scheddy.us/terms" className="underline">Terms of Service</a> · <a href="/https://www.scheddy.us/privacy" className="underline">Privacy</a> · <a href="/https://www.scheddy.us/sms" className="underline">SMS Terms & Conditions</a>
         </span>
       </label>
       <button className="btn" disabled={!checked || submitting} onClick={submit}>
