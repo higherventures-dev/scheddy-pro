@@ -30,10 +30,9 @@ export default function SmsConsentInline({
           className="mt-1"
         />
         <span className="text-xs">
-          By checking this box, you agree to receive text messages from <b>Scheddy</b> about appointments and updates.
-          Msg&data rates may apply. Reply <b>STOP</b> to opt out, <b>HELP</b> for help.
-          <br />
-          <a href={termsHref} className="underline">Terms</a> · <a href={privacyHref} className="underline">Privacy</a>
+             By checking this box, you agree to receive SMS messages from Scheddy regarding appointments, booking confirmations, reminders, account updates, and related customer care notifications. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not a condition of purchase.
+          <br/>View our <a href="https://www.scheddy.us/terms" className="underline">Terms of Service</a> · <a href="/https://www.scheddy.us/privacy" className="underline">Privacy</a> · <a href="/https://www.scheddy.us/sms" className="underline">SMS Terms & Conditions</a>
+
         </span>
       </label>
     
