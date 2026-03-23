@@ -1,11 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import "@/styles/globals.css";
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import { Inter } from "next/font/google";
+import { Geist, Inter } from "next/font/google";
 import Header from '@/components/HeaderAuth';
-import AuthMenu from '@/components/AuthMenu';
-import Footer from '@/components/dashboard/footer';
 import SideBar from '@/ui/dashboard/sidebar';
 import ArtistSideBar from '@/ui/dashboard/artist-sidebar';
 import StudioSideBar from '@/ui/dashboard/studio-sidebar';
@@ -37,19 +33,20 @@ const inter = Inter({
   display: 'swap',
 });
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const supabase = await createClient();
 
-  // ✅ Use secure method to fetch authenticated user
   const {
     data: { user },
-    error: userError,
   } = await supabase.auth.getUser();
 
   const userId = user?.id;
   let UserSidebar = SideBar;
 
-  // Fetch profile with additional fields for business_name, first_name, last_name, logo_url
   let profile: {
     role?: string;
     business_name?: string;
@@ -60,11 +57,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
   } | null = null;
 
   if (userId) {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('profiles')
       .select('role, business_name, first_name, last_name, logo_url, display_name')
       .eq('id', userId)
       .single();
+
     profile = data;
 
     const role = profile?.role?.toLowerCase();
@@ -75,39 +73,32 @@ export default async function DashboardLayout({ children }: { children: React.Re
     else if (role === 'admin') UserSidebar = AdminSideBar;
   }
 
-  // // Determine display name and image source
-  // const displayName = profile.display_name;
-  //   // profile?.business_name && profile.business_name.trim() !== ''
-  //   //   ? profile.business_name
-  //   //   : `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() || 'User';
-
-  // const logoSrc = profile?.logo_url && profile.logo_url.trim() !== ''
-  //   ? profile.logo_url
-  //   : '/assets/images/business-avatar.png';
-
   return (
-    <main className={`min-h-screen flex flex-col items-center ${inter.variable} font-sans`}>
-      <div className="flex h-screen w-screen flex-col md:flex-row md:overflow-hidden bg-[#1A1A1A]">
-        <div className="w-full flex-none md:w-48 border-r py-6 px-2">
-          <div className="flex items-center gap-2 text-xs py-1 px-3 pb-5 border-b-gray-100">
-            <Image src="/assets/images/logo.svg" alt="Scheddy" width={15} height={5} />
-                   <span className="pt-1 pl-2 text-lg">scheddy</span>
+    <main className={`min-h-screen ${inter.variable} font-sans bg-background text-foreground`}>
+      <div className="flex min-h-screen w-full flex-col bg-background md:flex-row">
+        <aside className="w-full flex-none border-r border-border bg-card py-6 px-2 md:w-56">
+          <div className="flex items-center gap-2 px-3 pb-5 pt-1 text-xs">
+            <Image
+              src="/assets/images/logo.svg"
+              alt="Scheddy"
+              width={15}
+              height={5}
+            />
+            <span className="pl-2 pt-1 text-lg font-medium">scheddy</span>
           </div>
-          <UserSidebar />
-        </div>
-        <div className="flex-grow p-4 md:overflow-y-auto md:p-4 bg-[#262626]">
-           <div className="">
-            <div className="justify-start text-left">
-            </div>
-            <div className="flex items-center gap-2 font-semibold text-2xl pt-4">
 
-</div>
-            <div>
-            <Header/>
-            </div></div>
-          <div className="border border-[#313131] mt-2"></div>
-          {children}
-        </div>
+          <UserSidebar />
+        </aside>
+
+        <section className="flex min-w-0 flex-1 flex-col bg-background">
+          <div className="p-4 md:p-6">
+            <Header />
+          </div>
+
+          <div className="px-4 md:px-6">
+            {children}
+          </div>
+        </section>
       </div>
     </main>
   );

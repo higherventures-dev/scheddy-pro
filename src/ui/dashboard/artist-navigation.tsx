@@ -19,11 +19,16 @@ import { createClient } from '@/utils/supabase/client';
 
 const links = [
   { name: 'Overview', href: '/dashboard', icon: HomeIcon },
-  { name: 'Bookings', href: '/dashboard/bookings', icon: CalendarDaysIcon }, // ✅ different from Calendar
-  { name: 'Calendar', href: '/dashboard/calendar', icon: CalendarIcon },
+  { name: 'Jobs', href: '/dashboard/jobs', icon: CalendarDaysIcon },
+  { name: 'Work', href: '/dashboard/work', icon: CalendarDaysIcon },
+  { name: 'Schedule', href: '/dashboard/calendar', icon: CalendarIcon },
   { name: 'Clients', href: '/dashboard/clients', icon: UserGroupIcon },
-  { name: 'Services', href: '/dashboard/services', icon: PencilSquareIcon }, // ✅ different from Clients
-  { name: 'Sales', href: '/dashboard/sales', icon: TagIcon },
+  { name: 'Team', href: '/dashboard/team', icon: CalendarDaysIcon },
+  { name: 'Services', href: '/dashboard/services', icon: PencilSquareIcon },
+  { name: 'Estimates', href: '/dashboard/estimates', icon: PencilSquareIcon }, // ✅ different from Clients
+  { name: 'Invoices', href: '/dashboard/sales', icon: TagIcon },
+  { name: 'Payments', href: '/dashboard/payments', icon: TagIcon },
+  { name: 'Reports', href: '/dashboard/reports', icon: TagIcon },
   // Logout handled via click
   { name: 'Logout', icon: UserIcon },
   {

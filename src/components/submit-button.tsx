@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { type ComponentProps } from "react";
 import { useFormStatus } from "react-dom";
+import { Loader2 } from "lucide-react";
 
 type Props = ComponentProps<typeof Button> & {
   pendingText?: string;
@@ -10,14 +11,50 @@ type Props = ComponentProps<typeof Button> & {
 
 export function SubmitButton({
   children,
-  pendingText = "Submitting...",
+  pendingText = "Signing in...",
+  className,
   ...props
 }: Props) {
+
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" aria-disabled={pending} {...props}>
-      {pending ? pendingText : children}
+
+    <Button
+
+      type="submit"
+
+      disabled={pending}
+
+      aria-disabled={pending}
+
+      className={`
+      w-full
+      h-11
+      font-medium
+      transition
+      ${pending ? "opacity-80" : ""}
+      ${className || ""}
+      `}
+
+      {...props}
+
+    >
+
+      {pending ? (
+
+        <span className="flex items-center gap-2">
+
+          <Loader2 className="h-4 w-4 animate-spin"/>
+
+          {pendingText}
+
+        </span>
+
+      ) : children}
+
     </Button>
+
   );
+
 }
