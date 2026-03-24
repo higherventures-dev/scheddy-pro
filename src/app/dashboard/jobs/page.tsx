@@ -5,12 +5,10 @@ import { useMemo, useState } from "react";
 import { JobsHeader } from "@/components/jobs/JobsHeader";
 import { JobsMap } from "@/components/jobs/JobsMap";
 import { JobsSummary } from "@/components/jobs/JobsSummary";
-import { JobsFilters } from "@/components/jobs/JobsFilters";
-import { JobsTable } from "@/components/jobs/JobsTable";
-import { JobsCommunicationFeed } from "@/components/jobs/JobsCommunicationFeed";
 import { JobsInsights } from "@/components/jobs/JobsInsights";
+import { JobsCommunicationFeed } from "@/components/jobs/JobsCommunicationFeed";
 
-import { jobs, statuses, Job } from "@/lib/jobs/jobs-data";
+import { jobs, Job } from "@/lib/jobs/jobs-data";
 
 export default function JobsPage() {
   const [statusFilter, setStatusFilter] = useState("All");
@@ -45,8 +43,9 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="flex bg-slate-950 text-white">
-      <div className="flex-1 p-6 space-y-6">
+    <div className="flex bg-slate-950 text-white [font-size:13px] leading-relaxed">
+      {/* LEFT SIDE */}
+      <div className="flex-1 p-5 space-y-5">
         <JobsHeader search={search} setSearch={setSearch} />
 
         <JobsMap
@@ -63,6 +62,7 @@ export default function JobsPage() {
         <JobsInsights />
       </div>
 
+      {/* RIGHT PANEL */}
       <div className="w-[360px] border-l border-slate-800 bg-slate-900">
         <JobsCommunicationFeed
           selectedJob={selectedJob}

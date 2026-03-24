@@ -55,20 +55,7 @@ export default async function HeaderAuth() {
   return (
     <div className="flex-1 p-2 flex py-0 px-8 pb-4">
       <div className="w-[50vw] flex items-center">
-        <Image
-          src={logoSrc}
-          alt={displayName}
-          width={21}
-          height={21}
-          className="rounded"
-          unoptimized={true}
-        />
-        <span className="text-xl pl-2 font-bold">{displayName}</span>
-        {/* {bookingUrl && (
-          <span className="text-xs text-[#808080]">
-            <a href={bookingUrl} target="_blank" rel="noreferrer">{bookingUrl}</a>
-          </span>
-        )} */}
+
       </div>
 
       <div className="flex justify-end gap-8 w-[50vw] items-center">

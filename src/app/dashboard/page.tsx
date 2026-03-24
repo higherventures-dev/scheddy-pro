@@ -1,41 +1,32 @@
 // app/dashboard/page.tsx
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
-import { getSalesByArtist } from '@/features/bookings/services/getSalesByArtist';
 import DashboardClient from './DashboardClient';
+import { getVendorDashboardData } from '@/features/dashboard/services/getVendorDashboardData';
 
-export default async function Dashboard() {
-  const supabase = await createClient(); // ok: we kept it async-compatible
-  const { data: { user }, error } = await supabase.auth.getUser();
-  if (error || !user) redirect(`/auth/sign-in?next=${encodeURIComponent('/dashboard')}`);
+export default async function DashboardPage() {
+  const supabase = await createClient();
 
-  const artistName = user.user_metadata?.first_name || 'Artist';
-  const bookings = await getSalesByArtist(user.id, true);
-  return <DashboardClient artistName={artistName} bookings={bookings} />;
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    redirect(`/auth/sign-in?next=${encodeURIComponent('/dashboard')}`);
+  }
+
+  const vendorName =
+    user.user_metadata?.business_name ||
+    user.user_metadata?.first_name ||
+    'Vendor';
+
+  const dashboardData = await getVendorDashboardData(user.id);
+
+  return (
+    <DashboardClient
+      vendorName={vendorName}
+      dashboardData={dashboardData}
+    />
+  );
 }
-
-
-// // app/dashboard/page.tsx or similar
-// import { redirect } from "next/navigation";
-// import { createClient } from "@/utils/supabase/server";
-// import { getSalesByArtist } from "@/features/bookings/services/getSalesByArtist";
-// import DashboardClient from "./DashboardClient";
-
-// export default async function Dashboard() {
-//   const supabase = await createClient();
-
-//   // Get user
-//   const { data: userData, error } = await supabase.auth.getUser();
-//   if (error || !userData?.user) {
-//     redirect("/login");
-//   }
-
-//   const artistName = userData.user.user_metadata?.first_name || "Artist";
-
-//   // Fetch current month bookings
-//   const bookings = await getSalesByArtist(userData.user.id, true);
-
-//   return (
-//     <DashboardClient artistName={artistName} bookings={bookings} />
-//   );
-// }

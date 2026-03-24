@@ -15,8 +15,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Scheddy",
-  description: "The #1 Tattoo Artist Management System",
+  title: "Scheddy Pro",
+  description: "Vendor Orchestration",
 };
 
 export const dynamic = 'force-dynamic';
@@ -79,8 +79,8 @@ export default async function DashboardLayout({
         <aside className="w-full flex-none border-r border-border bg-card py-6 px-2 md:w-56">
           <div className="flex items-center gap-2 px-3 pb-5 pt-1 text-xs">
             <Image
-              src="/assets/images/logo.svg"
-              alt="Scheddy"
+              src="/assets/images/scheddy-logo.svg"
+              alt=""
               width={15}
               height={5}
             />
