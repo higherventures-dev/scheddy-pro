@@ -65,27 +65,20 @@ noValidate
 <div className="flex items-center gap-2">
 
 <Image
-src="/assets/images/logo.svg"
-alt="Scheddy logo"
-width={28}
-height={28}
+src="/assets/images/ramp-dashboard-logo.png"
+alt="Ramp logo"
+width={144}
+height={35}
 priority
-className="h-7 w-7"
 />
 
-<h1 className="text-xl font-medium">
+{/* <h1 className="text-xl font-medium">
 
 scheddy
 
-</h1>
+</h1> */}
 
 </div>
-
-<p className="text-sm text-muted-foreground">
-
-Sign in to your account
-
-</p>
 
 </div>
 
@@ -225,7 +218,7 @@ name="next"
 value={nextPath}
 />
 
-<Link
+{/* <Link
 
 className="text-xs text-muted-foreground underline"
 
@@ -235,13 +228,13 @@ href="/auth/forgot-password"
 
 Forgot password?
 
-</Link>
+</Link> */}
 
 <p className="text-xs text-muted-foreground">
 
-Don't have an account?{" "}
+{/* Don't have an account?{" "} */}
 
-<Link
+{/* <Link
 
 className="font-medium underline"
 
@@ -251,7 +244,7 @@ href="/auth/sign-up"
 
 Sign up
 
-</Link>
+</Link> */}
 
 </p>
 
@@ -260,9 +253,9 @@ Sign up
 className="
 
 mt-2
-
+mx-auto
 h-11
-w-full
+w-1/2
 
 "
 
@@ -293,7 +286,7 @@ border-border
 
 >
 
-© Scheddy
+Powered By Scheddy &reg;
 
 </div>
 

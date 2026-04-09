@@ -15,7 +15,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Scheddy Pro",
+  title: "Ramp Vendor Portal",
   description: "Vendor Orchestration",
 };
 
@@ -36,7 +36,7 @@ const inter = Inter({
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.Node;
 }) {
   const supabase = await createClient();
 
@@ -76,29 +76,49 @@ export default async function DashboardLayout({
   return (
     <main className={`min-h-screen ${inter.variable} font-sans bg-background text-foreground`}>
       <div className="flex min-h-screen w-full flex-col bg-background md:flex-row">
-        <aside className="w-full flex-none border-r border-border bg-card py-6 px-2 md:w-56">
-          <div className="flex items-center gap-2 px-3 pb-5 pt-1 text-xs">
+        
+        {/* SIDEBAR */}
+        <aside className="w-full flex-none border-r border-border bg-card py-6 px-2 md:w-56 flex flex-col">
+          
+          {/* TOP LOGO */}
+          <div className="flex items-center gap-2 px-3 pb-5 pt-1">
             <Image
-              src="/assets/images/scheddy-logo.svg"
-              alt=""
-              width={15}
-              height={5}
+              src="/assets/images/ramp-dashboard-logo.png"
+              alt="Ramp Logo"
+              width={144}
+              height={35}
+              priority
+              className="mx-auto h-auto"
             />
-            <span className="pl-2 pt-1 text-lg font-medium">scheddy</span>
           </div>
 
-          <UserSidebar />
+          {/* SIDEBAR NAVIGATION - flex-1 expands to push footer down */}
+          <div className="flex-1 overflow-y-auto">
+            <UserSidebar />
+          </div>
+
+          {/* POWERED BY FOOTER */}
+          <div className="mt-auto pt-6 pb-2 px-3 border-t border-border/40">
+            <p className="text-[10px] text-muted-foreground uppercase tracking-tighter text-center">
+              Powered By
+            </p>
+            <p className="text-xs font-semibold text-center text-foreground/70">
+              Scheddy &reg;
+            </p>
+          </div>
         </aside>
 
+        {/* MAIN CONTENT AREA */}
         <section className="flex min-w-0 flex-1 flex-col bg-background">
           <div className="p-4 md:p-6">
             <Header />
           </div>
 
-          <div className="px-4 md:px-6">
+          <div className="px-4 md:px-6 flex-1">
             {children}
           </div>
         </section>
+
       </div>
     </main>
   );
